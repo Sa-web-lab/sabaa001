@@ -39,6 +39,12 @@
         button:hover {
             background-color: #0056b3;
         }
+        .confirmation {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -50,9 +56,9 @@
 
         <label for="doctor">Select a Doctor:</label>
         <select id="doctor" required>
-            <option value="Dr. Mohammed Ali">Dr. Mohammed Ali</option>
-            <option value="Dr. Said Musa">Dr. Said Musa</option>
-            <option value="Dr. Abdullah Said">Dr. Abdullah Said</option>
+            <option value="Dr. Said">Dr. Said</option>
+            <option value="Dr. Ali">Dr. Ali</option>
+            <option value="Dr. Hamed">Dr. Hamed</option>
         </select>
 
         <label for="appointmentDate">Select an Appointment Date:</label>
@@ -68,6 +74,15 @@
 
         <button type="submit">Book Appointment</button>
     </form>
+
+    <!-- Appointment confirmation section -->
+    <div class="confirmation" id="confirmationSection" style="display: none;">
+        <h2>Appointment Booked</h2>
+        <p><strong>Patient Name:</strong> <span id="confirmedPatientName"></span></p>
+        <p><strong>Doctor:</strong> <span id="confirmedDoctor"></span></p>
+        <p><strong>Date:</strong> <span id="confirmedDate"></span></p>
+        <p><strong>Time:</strong> <span id="confirmedTime"></span></p>
+    </div>
 </div>
 
 <script>
@@ -78,7 +93,15 @@
         const selectedDate = document.getElementById('appointmentDate').value;
         const selectedTime = document.getElementById('appointmentTime').value;
 
+        // Update the confirmation section with the booking details
+        document.getElementById('confirmedPatientName').textContent = patientName;
+        document.getElementById('confirmedDoctor').textContent = selectedDoctor;
+        document.getElementById('confirmedDate').textContent = selectedDate;
+        document.getElementById('confirmedTime').textContent = selectedTime;
 
+        // Show the confirmation section and hide the form
+        document.getElementById('bookingForm').style.display = 'none';
+        document.getElementById('confirmationSection').style.display = 'block';
     });
 </script>
 </body>
